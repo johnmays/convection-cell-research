@@ -2,7 +2,7 @@
 
 ### Convection Cell Research
 
-<img src="/data/chewing.png" width="400">
+<img src="/gitassets/chewing.png" width="400">
 
 In 2019, [Wirth Lab](https://case.edu/engineering/labs/wirth/) collected microscope images and videos of paint in the drying process.
 

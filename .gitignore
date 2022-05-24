@@ -17,3 +17,6 @@ __pycache__/
 # Files that julia seems to want to create:
 **/.toml
 *.toml
+
+# Data folder I don't want the data to be uploaded to GitHub
+data/
