@@ -17,6 +17,7 @@ def plotintensitydistribution(image, title="Pixel Intensity Distribution over Im
     ax = plt.gca()
     ax.set_facecolor("#91B2C7")
     plt.show()
+    # print(bins)
 
 def nearestneighborimage(image):
     dims = np.shape(image)
@@ -46,7 +47,7 @@ def nearestneighborimage(image):
             neighbor_difference_image[row, col] = sum_difference
     return neighbor_difference_image 
 
-def normalize(image):
+def normalize(image, torange=(0.0,1.0)):
     # takes range of monotone image and brings it back to [0.0, 1.0]
     normalized_image = np.copy(image)
     min_intensity = np.min(image)
@@ -57,3 +58,5 @@ def normalize(image):
     for row in range(height):
         for col in range(width):
             normalized_image[row, col] = (image[row, col]-min_intensity)/(max_intensity-min_intensity)
+            normalized_image[row, col] = (normalized_image[row, col]+torange[0]) * (torange[1]-torange[0])
+    return normalized_image
