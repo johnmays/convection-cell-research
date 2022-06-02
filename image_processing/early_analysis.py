@@ -4,7 +4,7 @@ import numpy as np
 
 def plotintensitydistribution(image, title="Pixel Intensity Distribution over Image"):
     graphfont = {'fontname':'Consolas'}
-    plt.figure(figsize=(6,2), dpi=300)
+    plt.figure(figsize=(6,2), dpi =100) #dpi =
     n, bins, patches = plt.hist(image.ravel(), bins=np.linspace(0,1.0,256))
     plt.title(title, **graphfont)
     plt.xlabel("Pixel Value (grayscale)", **graphfont)
