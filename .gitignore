@@ -9,6 +9,10 @@ pg.py
 # JetBrians
 **/.idea/*
 
+# Jupyter Webapp save file folder
+.ipynb_checkpoints/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
