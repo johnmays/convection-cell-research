@@ -5,6 +5,9 @@ import numpy as np
 import os
 # from mpl_toolkits import mplot3d
 
+purples = ["#0a0612", "#392249", "#482980", "#673ab7",
+           "#7a52aa", "#9779bd", "#b59fd0", "#d3c5e3"]
+
 def getbackgroundareas(image):
     # takes in a monochrome, binary image matrix
     # generates a list of black areas in an image:
@@ -68,7 +71,7 @@ def invert(image):
             newimage[row,col] = 255 - newimage[row,col]
     return newimage
 
-def borderirregularity(P_set):
+def borderirregularity(P_set, type=0):
     # P_set is set of pixels that form an area
     A = len(P_set) # area
     B_set = [] # B_set is set of pixels that could be considered as belonging to the border of the area
@@ -102,15 +105,20 @@ def borderirregularity(P_set):
     if B == 0:
         return 0
     else:
-        return N/B # average number of neighbors per pixel considered to be on the border
+        if type == 0:
+            return N/B # number of neighbors per pixel considered to be on the border
+        elif type == 1:
+            return np.sum(N_set[N_set == 1])/B # number of one-neighbor pixels per pixels on border
+        else:
+            return -1
 
-def irregularityplot(image):
+def irregularityplot(image, type=0):
     final_image = np.copy(image)
     areas, area_locations = getbackgroundareas(image)
     irregularity_measures = []
     # finding irregularity measures for each area
     for i in range(len(areas)):
-        irregularity_measures.append(borderirregularity(area_locations[i]))
+        irregularity_measures.append(borderirregularity(area_locations[i], type=type))
     
     # normalizing irregularity measures
     irregularity_measures = irregularity_measures - np.min(irregularity_measures)
